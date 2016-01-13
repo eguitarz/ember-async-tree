@@ -20,16 +20,10 @@ export default Component.extend(ResizeAware, {
   'row-height': 20,
   indentation: 20,
 
-  isInitialChanged: computed(
-    'initial',
-    '_initial',
-    'initial-filter',
-    '_initial-filter', {
-      get() {
-        return this.get('initial') !== this.get('_initial') ||
-               this.get('initial-filter') !== this.get('_initial-filter');
-      }
-  }),
+  checkInitialChanged(){
+    return this.get('initial') !== this.get('_initial') ||
+           this.get('initial-filter') !== this.get('_initial-filter');
+  },
 
   visibleNodes: computed(
     '_root',
@@ -88,7 +82,7 @@ export default Component.extend(ResizeAware, {
   },
 
   updateInitial() {
-    if (this.get('isInitialChanged')) {
+    if (this.checkInitialChanged()) {
       let initial = this.get('initial');
       let initialFilter = this.get('initial-filter');
       let { root, openNodes } = Node.load(initial, initialFilter);
