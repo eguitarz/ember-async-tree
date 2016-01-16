@@ -8,7 +8,8 @@ import intersection from 'lodash/array/intersection';
 const {
   isEmpty,
   isPresent,
-  set
+  set,
+  guidFor
 } = Ember;
 
 export default class Node {
@@ -18,6 +19,7 @@ export default class Node {
     this.content = options.content;
     this.depth = options.depth == null ? -1 : options.depth;
     this.children = new Ember.Map();
+    this.id = guidFor(options.content);
 
     this.isLoading = false;
     this.isLoaded = false;

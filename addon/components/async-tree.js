@@ -10,6 +10,7 @@ const {
   RSVP,
   isEmpty,
   isNone,
+  isPresent,
   Component
 } = Ember;
 
@@ -85,6 +86,7 @@ export default Component.extend(ResizeAware, {
 
   updateWidth() {
     this.set('width', this.$().width());
+    this.set('_element', this.$());
   },
 
   updateInitial() {
